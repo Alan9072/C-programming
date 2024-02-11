@@ -7,9 +7,30 @@
 int top = -1;
 char stack[20];
 
-void push(char element);
-char pop();
-int priority(char element);
+void push(char element) {
+    top++;
+    stack[top] = element;
+}
+
+char pop() {
+    char x;
+    x = stack[top];
+    if (x != '(')
+        printf("%c ", x);
+    top--;
+    return x;
+}
+
+int priority(char element) {
+    if (element == '^')
+        return 3;
+    else if (element == '*' || element == '/')
+        return 2;
+    else if (element == '+' || element == '-')
+        return 1;
+    else
+        return 0;
+}
 
 int main() {
     push('(');
@@ -40,29 +61,10 @@ int main() {
     }
 }
 
-void push(char element) {
-    top++;
-    stack[top] = element;
-}
 
-char pop() {
-    char x;
-    x = stack[top];
-    if (x != '(')
-        printf("%c ", x);
-    top--;
-    return x;
-}
 
-int priority(char element) {
-    if (element == '^')
-        return 3;
-    else if (element == '*' || element == '/')
-        return 2;
-    else if (element == '+' || element == '-')
-        return 1;
-    else
-        return 0;
-}
+
+
+
 
 
